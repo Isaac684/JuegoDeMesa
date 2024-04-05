@@ -45,4 +45,3 @@ for i in range(2):
     otroJugador.resultadoDado[i] = rdn.randint(1,6)
 
 otroJugador.esPar()
-print("pruba")
