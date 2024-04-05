@@ -1,0 +1,2 @@
+from jugador import jugador
+
