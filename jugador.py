@@ -37,8 +37,16 @@ class jugador:
     
     def lanzamientoInicial(self):
         print("Lanzando dados...")
-        self.resultadoDado[0] = 4
-        self.resultadoDado[1] = 4
+        self.resultadoDado[0] = rdn.randrange(1,6)
+        self.resultadoDado[1] = rdn.randrange(1,6)
         print(f"Dado 1: {self.resultadoDado[0]} Dado 2: {self.resultadoDado[1]}")
         self.esPar(self.salidaMeta)
-        
+
+    def lanzamientoDeBonificacion(self):
+        print("Lanzando dados...")
+        self.resultadoDado[0] = rdn.randrange(1,6)
+        self.resultadoDado[1] = rdn.randrange(1,6)
+        print(f"Dado 1: {self.resultadoDado[0]} Dado 2: {self.resultadoDado[1]}")
+        self.cambiarPosicion()
+        if self.tiroDoble:
+            print("Volveras a tirar ya que habias dobles antes de caer en la casilla")

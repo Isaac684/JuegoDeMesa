@@ -28,8 +28,10 @@ while not reglas.juegoFinalizado:
         listJugadores[i].lanzamientoInicial()
         if listJugadores[i].salidaMeta:
             listJugadores[i].cambiarPosicion()
+            listJugadores = reglas.casillaPenalizacion(i,listJugadores)
+            listJugadores = reglas.casillaTiroDoble(i,listJugadores)
             listJugadores = reglas.mecanicaComer(i, listJugadores)
-        
+            
         
 
         while listJugadores[i].tiroDoble:
@@ -42,7 +44,11 @@ while not reglas.juegoFinalizado:
                 listJugadores[i].tiroDoble = False
             else:
                 listJugadores[i].cambiarPosicion()
+                listJugadores = reglas.casillaPenalizacion(i,listJugadores)
+                listJugadores = reglas.casillaTiroDoble(i,listJugadores)
                 listJugadores = reglas.mecanicaComer(i, listJugadores)
+                
+                
         input("")
 
         if listJugadores[i].posicionActual >= 100:
