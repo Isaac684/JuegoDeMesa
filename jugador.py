@@ -28,7 +28,7 @@ class jugador:
 import random as rdn
 otroJugador = jugador(1,34,[0,0],45,True,True)  
 
-otroJugador.resultadoDado[0] = rdn.randint(1,6)
-otroJugador.resultadoDado[1] = rdn.randint(1,6)
+for i in range(2):
+    otroJugador.resultadoDado[i] = rdn.randint(1,6)
 
 print(otroJugador.esPar())
