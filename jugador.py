@@ -15,7 +15,7 @@ class jugador:
     def esPar(self,Boolpartida):
         if self.resultadoDado[0] == self.resultadoDado[1]:
             if Boolpartida: 
-                print("Haz obtenido dobles!!!!")
+                print("Haz obtenido dobles!!!!\nPuedes volver a tirar.")
                 self.tiroDoble = True
                 self.cantidadTirosDobles += 1
             else:

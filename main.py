@@ -34,10 +34,13 @@ reglas = juego()
 
 while not reglas.juegoFinalizado:
     for i in range(len(listJugadores)):
-        #clear_console()
+        clear_console()
         print(f"Jugador {listJugadores[i].id} va a lanzar los dados")
         print(f"Actualmente te encuentras en la casilla: {listJugadores[i].posicionActual}")
-        input("Precione una tecla para lanzarlos...")
+        respuesta = input("Precione una tecla para lanzarlos...")
+        if respuesta == 'q' or  respuesta == 'Q':
+            quit()
+
         listJugadores[i].lanzamientoInicial()
         if listJugadores[i].salidaMeta:
             listJugadores[i].cambiarPosicion()
@@ -62,7 +65,7 @@ while not reglas.juegoFinalizado:
                 listJugadores = reglas.mecanicaComer(i, listJugadores)
                 
                 if listJugadores[i].posicionActual >= 100:
-                    #clear_console()
+                    clear_console()
                     print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
                     reglas.juegoFinalizado = True
                     break
@@ -72,7 +75,7 @@ while not reglas.juegoFinalizado:
         input("")
 
         if listJugadores[i].posicionActual >= 100:
-            #clear_console()
+            clear_console()
             print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
             reglas.juegoFinalizado = True
             break
