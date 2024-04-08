@@ -1,5 +1,7 @@
 from jugador import jugador
 from juego import juego
+from tablero import tablero
+tabla = tablero()
 import os
 
 def clear_console():
@@ -44,11 +46,13 @@ while not reglas.juegoFinalizado:
         listJugadores[i].lanzamientoInicial()
         if listJugadores[i].salidaMeta:
             listJugadores[i].cambiarPosicion()
+            tabla.mostrarTablero(listJugadores)     
             listJugadores = reglas.casillaPenalizacion(i,listJugadores)
+
             listJugadores = reglas.casillaTiroDoble(i,listJugadores)
+
             listJugadores = reglas.mecanicaComer(i, listJugadores)
-            
-        
+
 
         while listJugadores[i].tiroDoble:
             input("")
@@ -60,8 +64,11 @@ while not reglas.juegoFinalizado:
                 listJugadores[i].tiroDoble = False
             else:
                 listJugadores[i].cambiarPosicion()
+                tabla.mostrarTablero(listJugadores)     
                 listJugadores = reglas.casillaPenalizacion(i,listJugadores)
+
                 listJugadores = reglas.casillaTiroDoble(i,listJugadores)
+        
                 listJugadores = reglas.mecanicaComer(i, listJugadores)
                 
                 if listJugadores[i].posicionActual >= 100:
@@ -71,7 +78,6 @@ while not reglas.juegoFinalizado:
                     break
         listJugadores[i].penalizacion = False
 
-                
         input("")
 
         if listJugadores[i].posicionActual >= 100:
@@ -79,7 +85,3 @@ while not reglas.juegoFinalizado:
             print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
             reglas.juegoFinalizado = True
             break
-        
-
-        
-

@@ -1,4 +1,6 @@
 import random as rd
+from tablero import tablero
+tabla = tablero()
 class juego:
     casillasSeguras = [57,46,4,49,91,18,8,55,85,60]
     casillasPenalizacion = [13,88,87,15,82,22,77,44,39,24]
