@@ -46,7 +46,7 @@ while not reglas.juegoFinalizado:
         listJugadores[i].lanzamientoInicial()
         if listJugadores[i].salidaMeta:
             listJugadores[i].cambiarPosicion()
-            tabla.mostrarTablero(listJugadores)     
+            tabla.mostrarTablero(listJugadores,reglas)     
             listJugadores = reglas.casillaPenalizacion(i,listJugadores)
 
             listJugadores = reglas.casillaTiroDoble(i,listJugadores)
@@ -64,7 +64,7 @@ while not reglas.juegoFinalizado:
                 listJugadores[i].tiroDoble = False
             else:
                 listJugadores[i].cambiarPosicion()
-                tabla.mostrarTablero(listJugadores)     
+                tabla.mostrarTablero(listJugadores,reglas)     
                 listJugadores = reglas.casillaPenalizacion(i,listJugadores)
 
                 listJugadores = reglas.casillaTiroDoble(i,listJugadores)

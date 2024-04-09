@@ -2,10 +2,11 @@ import random as rd
 from tablero import tablero
 tabla = tablero()
 class juego:
-    casillasSeguras = [57,46,4,49,91,18,8,55,85,60]
-    casillasPenalizacion = [13,88,87,15,82,22,77,44,39,24]
-    casillasTirosDoble = [36,73,2,56,16]
-    tunelSeguro = [95,96,97,98,99]
+    casillasSeguras = [4, 8, 18, 46, 49, 55, 57, 60, 85, 91]
+    casillasPenalizacion = [13, 15, 22, 24, 39, 44, 77, 82, 88, 94]
+    casillasTirosDoble = [2, 16, 36, 56, 73]
+    tunelSeguro = [95, 96, 97, 98, 99]
+
     meta = 100
     juegoFinalizado = False
 
@@ -23,9 +24,12 @@ class juego:
                     else:
                         print(f"El jugador {listJugadores[posicionJugadorActual].id} ha comido al jugador {listJugadores[i].id}")
                         print(f"Por lo que el jugador {listJugadores[i].id} retrocede 3 casillas!")
+                        listJugadores[i].posicionActual -= 3
+                        print(f"Se mueve a la casilla: {listJugadores[i].posicionActual}")
+
                         if listJugadores[posicionJugadorActual].penalizacion == False:
                             print(f"Y el jugador {listJugadores[posicionJugadorActual].id} avanzará 10 casillas!!")
-                            listJugadores[i].posicionActual -= 3
+
                             listJugadores[posicionJugadorActual].posicionActual += 10
                             print(f"Te mueves a la casilla: {listJugadores[posicionJugadorActual].posicionActual}")
                             self.casillaPenalizacion(posicionJugadorActual,listJugadores)

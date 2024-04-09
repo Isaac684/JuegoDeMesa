@@ -3,7 +3,7 @@ from colorama import Fore, Back, Style
 
 #tabla con formato
 class tablero:
-    def mostrarTablero(self, listJugadores): 
+    def mostrarTablero(self, listJugadores,reglas): 
         iconoJugador = ['  ⓵', '  ⓶', '  ⓷', '  ⓸', '  ⓹']
         posicionesJugadores = []
         for k in range(len(listJugadores)):
@@ -14,20 +14,20 @@ class tablero:
         for i in range(1, 101, 10):
             fila = []
             for j in range(i, i+10):
-                if j in [13,88,87,15,82,22,77,44,39,24]:  # Verificar si el número es par
+                if j in reglas.casillasPenalizacion:
                     
                     if j in posicionesJugadores:
-                        fila.append(Fore.YELLOW + Back.RED +"{:4}".format(iconoJugador[posicionesJugadores.index(j)]) + " " + Back.RESET + Fore.RESET)  # Si es par, imprimir en amarillo
+                        fila.append(Fore.YELLOW + Back.RED +"{:4}".format(iconoJugador[posicionesJugadores.index(j)]) + " " + Back.RESET + Fore.RESET)  
                     else:
-                        fila.append(Fore.YELLOW + Back.RED +"{:4}".format(j) + " " + Back.RESET + Fore.RESET)  # Si es par, imprimir en amarillo
+                        fila.append(Fore.YELLOW + Back.RED +"{:4}".format(j) + " " + Back.RESET + Fore.RESET)  
 
-                elif j in [57,46,4,49,91,18,8,55,85,60] or j in [95,96,97,98,99]:
+                elif j in reglas.casillasSeguras or j in reglas.tunelSeguro:
                     if j in posicionesJugadores:
                         fila.append(Back.CYAN + "{:4}".format(iconoJugador[posicionesJugadores.index(j)]) +" "+ Back.RESET+Fore.RESET)  # Si no es par, imprimir normalmente
                     else:
                         fila.append(Back.CYAN + "{:4}".format(j) +" "+ Back.RESET+Fore.RESET)  # Si no es par, imprimir normalmente
 
-                elif j in [36,73,2,56,16]:
+                elif j in reglas.casillasTirosDoble:
                     if j in posicionesJugadores:
                         fila.append(Fore.WHITE + Back.GREEN +"{:4}".format(iconoJugador[posicionesJugadores.index(j)]) +" "+ Back.RESET + Fore.RESET)
                     else:
@@ -35,9 +35,11 @@ class tablero:
 
                 else:
                     if j in posicionesJugadores:
-                        fila.append("{:4}".format(iconoJugador[posicionesJugadores.index(j)]) + " ")  # Si no es par, imprimir normalmente
+                        fila.append("{:4}".format(iconoJugador[posicionesJugadores.index(j)]) + " ")  
+                    elif j == 100:
+                        fila.append(Fore.WHITE + Back.LIGHTBLACK_EX +"{:4}".format('  Ⓜ') +" "+ Back.RESET + Fore.RESET)
                     else:
-                        fila.append("{:4}".format(j) + " ")  # Si no es par, imprimir normalmente
+                        fila.append("{:4}".format(j) + " ")  
 
             tabla.append(fila)
 
@@ -58,6 +60,10 @@ class tablero:
         print('\n+-----------------------------+\n')
 
 
+        print('+-----------------------------------------------------------+')
         for fila in tabla:
+            
             print('|' + '|'.join(fila)+"|")
+            print('+-----------------------------------------------------------+')
+
         print()
