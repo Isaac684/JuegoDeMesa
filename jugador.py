@@ -21,11 +21,10 @@ class jugador:
             else:
                 self.salidaMeta = True
                 print(f"Jugador {self.id} ha salido de la meta porque haz sacado par")
-        elif not Boolpartida:
-            
-            print(f"No haz sacado par, por lo tanto no saldras de la meta.")
 
         else:
+            print(f"No haz sacado par, por lo tanto no saldras de la meta.")
+            input()
             self.tiroDoble = False
             self.cantidadTirosDobles = 0
         
@@ -58,3 +57,4 @@ class jugador:
         self.cambiarPosicion()
         if self.tiroDoble:
             print("Volveras a tirar ya que habias dobles antes de caer en la casilla")
+    

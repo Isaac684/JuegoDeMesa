@@ -25,16 +25,27 @@ class juego:
                         print(f"El jugador {listJugadores[posicionJugadorActual].id} ha comido al jugador {listJugadores[i].id}")
                         print(f"Por lo que el jugador {listJugadores[i].id} retrocede 3 casillas!")
                         listJugadores[i].posicionActual -= 3
-                        print(f"Se mueve a la casilla: {listJugadores[i].posicionActual}")
+                        if listJugadores[i].posicionActual <= 0:
+                            listJugadores[i].posicionActual = 1
+                            print(f"Se mueve a la casilla: {listJugadores[i].posicionActual}")
+                            if listJugadores[posicionJugadorActual].penalizacion == False:
+                                print(f"Y el jugador {listJugadores[posicionJugadorActual].id} avanzará 10 casillas!!")
 
-                        if listJugadores[posicionJugadorActual].penalizacion == False:
-                            print(f"Y el jugador {listJugadores[posicionJugadorActual].id} avanzará 10 casillas!!")
+                                listJugadores[posicionJugadorActual].posicionActual += 10
+                                print(f"Te mueves a la casilla: {listJugadores[posicionJugadorActual].posicionActual}")
+                                self.casillaPenalizacion(posicionJugadorActual,listJugadores)
+                            else: 
+                                print(f'Debido a que vienes de una casilla de penalizacion, no podras avanzar las 10 casillas adicionales por haber comido al jugador {listJugadores[i].id}')
+                        else:
+                            print(f"Se mueve a la casilla: {listJugadores[i].posicionActual}")
+                            if listJugadores[posicionJugadorActual].penalizacion == False:
+                                print(f"Y el jugador {listJugadores[posicionJugadorActual].id} avanzará 10 casillas!!")
 
-                            listJugadores[posicionJugadorActual].posicionActual += 10
-                            print(f"Te mueves a la casilla: {listJugadores[posicionJugadorActual].posicionActual}")
-                            self.casillaPenalizacion(posicionJugadorActual,listJugadores)
-                        else: 
-                            print(f'Debido a que vienes de una casilla de penalizacion, no podras avanzar las 10 casillas adicionales por haber comido al jugador {listJugadores[i].id}')
+                                listJugadores[posicionJugadorActual].posicionActual += 10
+                                print(f"Te mueves a la casilla: {listJugadores[posicionJugadorActual].posicionActual}")
+                                self.casillaPenalizacion(posicionJugadorActual,listJugadores)
+                            else: 
+                                print(f'Debido a que vienes de una casilla de penalizacion, no podras avanzar las 10 casillas adicionales por haber comido al jugador {listJugadores[i].id}')
 
         return listJugadores
     def casillaPenalizacion(self, posicionActual,listJugadores):
@@ -50,6 +61,7 @@ class juego:
             listJugadores[posicionActual].posicionActual -= (dado1+dado2)
             listJugadores[posicionActual].tiroDoble = False
             print(f"Te mueves a la casilla: {listJugadores[posicionActual].posicionActual}")
+            input()
             self.casillaPenalizacion(posicionActual,listJugadores)
             #self.casillaTiroDoble(posicionActual,listJugadores)
             self.mecanicaComer(posicionActual,listJugadores)
