@@ -58,7 +58,7 @@ class juego:
             print(f"{Fore.RED}Por lo que el jugador {listJugadores[posicionActual].id} debera de retroceder {(dado1+dado2)} casillas{Fore.RESET}")
             listJugadores[posicionActual].posicionActual -= (dado1+dado2)
             listJugadores[posicionActual].tiroDoble = False
-            print(f"{Style.BRIGHT}Te mueves a la casilla: {listJugadores[posicionActual].posicionActual}{Style.BRIGHT}")
+            print(f"{Style.BRIGHT}Te mueves a la casilla: {listJugadores[posicionActual].posicionActual}{Style.RESET_ALL}")
             tabla.mostrarTablero(listJugadores,self)     
             
             self.casillaPenalizacion(posicionActual,listJugadores)
