@@ -39,11 +39,14 @@ while not reglas.juegoFinalizado:
         clear_console()
         print(f"Jugador {listJugadores[i].id} va a lanzar los dados")
         print(f"Actualmente te encuentras en la casilla: {listJugadores[i].posicionActual}")
-        respuesta = input("Precione una tecla para lanzarlos...")
+        respuesta = input("Precione una tecla para lanzarlos... o ingrese q para salir.")
         if respuesta == 'q' or  respuesta == 'Q':
             quit()
 
         listJugadores[i].lanzamientoInicial()
+        if not listJugadores[i].salidaMeta:
+            tabla.mostrarTablero(listJugadores, reglas)
+
         if listJugadores[i].salidaMeta:
             listJugadores[i].cambiarPosicion()
             tabla.mostrarTablero(listJugadores,reglas)     
@@ -62,6 +65,8 @@ while not reglas.juegoFinalizado:
                 listJugadores[i].cantidadTirosDobles = 0
                 listJugadores[i].posicionActual = 0
                 listJugadores[i].tiroDoble = False
+                tabla.mostrarTablero(listJugadores,reglas)     
+
             else:
                 listJugadores[i].cambiarPosicion()
                 tabla.mostrarTablero(listJugadores,reglas)     
@@ -75,6 +80,8 @@ while not reglas.juegoFinalizado:
                     clear_console()
                     print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
                     reglas.juegoFinalizado = True
+                    tabla.mostrarTablero(listJugadores,reglas)     
+
                     break
         listJugadores[i].penalizacion = False
 
@@ -84,4 +91,5 @@ while not reglas.juegoFinalizado:
             clear_console()
             print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
             reglas.juegoFinalizado = True
+            tabla.mostrarTablero(listJugadores,reglas)     
             break

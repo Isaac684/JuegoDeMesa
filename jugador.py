@@ -1,6 +1,7 @@
 import random as rdn
 from juego import juego
-
+import colorama
+from colorama import Fore, Back, Style
 class jugador:
     def __init__(self, id, posicionActual, resultadoDado,tiroDoble,cantidadTirosDobles,penalizacion,salidaMeta):
         self.id = id #entero para identificar jugador
@@ -15,16 +16,17 @@ class jugador:
     def esPar(self,Boolpartida):
         if self.resultadoDado[0] == self.resultadoDado[1]:
             if Boolpartida: 
-                print("Haz obtenido dobles!!!!\nPuedes volver a tirar.")
                 self.tiroDoble = True
                 self.cantidadTirosDobles += 1
+                if(self.cantidadTirosDobles<=2):    
+                    print(f"{Back.GREEN}Haz obtenido dobles!!!!{Back.RESET}\nPuedes volver a tirar.")
             else:
                 self.salidaMeta = True
-                print(f"Jugador {self.id} ha salido de la meta porque haz sacado par")
+                print(Fore.GREEN + f"Jugador {self.id} ha salido de la meta porque haz sacado par"+Fore.RESET)
 
         else:
-            print(f"No haz sacado par, por lo tanto no saldras de la meta.")
-            input()
+            if not Boolpartida:
+                print(Fore.RED+f"No haz sacado par, por lo tanto no saldras de la meta."+Fore.RESET)
             self.tiroDoble = False
             self.cantidadTirosDobles = 0
         
@@ -36,25 +38,24 @@ class jugador:
                 if self.posicionActual > 100:
                     extra = self.posicionActual - 100
                     self.posicionActual = self.posicionActual - extra
-                print(f"Te mueves a la casilla: {self.posicionActual}")
+                print(f"{Style.BRIGHT} Te mueves a la casilla: {self.posicionActual}{Style.RESET_ALL}")
                 if self.posicionActual in juego.casillasSeguras:
-                    print('Felicidades haz caido en una casilla segura!!!\nSignifica que no podran comerte si otro jugador cae en esta casilla :)')
+                    print(f'{Back.BLUE}Felicidades haz caido en una casilla segura!!!{Back.RESET}\nSignifica que no podran comerte si otro jugador cae en esta casilla.')
                 elif self.posicionActual in juego.tunelSeguro:
-                    print('Felicidades haz llegado al tunel seguro!!!\nApartir de ahora NADIE podra comerte.')
+                    print(f'{Back.BLUE}Felicidades haz llegado al tunel seguro!!!{Back.RESET}\nApartir de ahora NADIE podra comerte.')
 
     def lanzamientoInicial(self):
         print("\nLanzando dados...")
         self.resultadoDado[0] = rdn.randrange(1,6)
         self.resultadoDado[1] = rdn.randrange(1,6)
-        print(f"Dado 1: {self.resultadoDado[0]} Dado 2: {self.resultadoDado[1]}")
+        print(f"{Style.BRIGHT}Resultado de los dados: {self.resultadoDado[0]} y {self.resultadoDado[1]}{Style.RESET_ALL}")
         self.esPar(self.salidaMeta)
 
     def lanzamientoDeBonificacion(self):
         print("\nLanzando dados...")
         self.resultadoDado[0] = rdn.randrange(1,6)
         self.resultadoDado[1] = rdn.randrange(1,6)
-        print(f"Dado 1: {self.resultadoDado[0]} Dado 2: {self.resultadoDado[1]}")
+        print(f"{Style.BRIGHT}Resultado de los dados: {self.resultadoDado[0]} y {self.resultadoDado[1]}{Style.RESET_ALL}")
         self.cambiarPosicion()
         if self.tiroDoble:
-            print("Volveras a tirar ya que habias dobles antes de caer en la casilla")
-    
+            print(f"{Fore.GREEN}Volveras a tirar ya que habias dobles antes de caer en la casilla{Fore.RESET}")  
