@@ -39,15 +39,15 @@ while not reglas.juegoFinalizado:
         clear_console()
         print(f"Jugador {listJugadores[i].id} va a lanzar los dados")
         print(f"Actualmente te encuentras en la casilla: {listJugadores[i].posicionActual}")
-        respuesta = input("Precione una tecla para lanzarlos... o ingrese q para salir.")
+        respuesta = input("Precione una tecla para lanzarlos... o ingrese q para salir.\n")
         if respuesta == 'q' or  respuesta == 'Q':
-            quit()
+            exit()
 
         listJugadores[i].lanzamientoInicial()
-        if not listJugadores[i].salidaMeta:
+        if not listJugadores[i].salidaInicio:
             tabla.mostrarTablero(listJugadores, reglas)
 
-        if listJugadores[i].salidaMeta:
+        if listJugadores[i].salidaInicio:
             listJugadores[i].cambiarPosicion()
             tabla.mostrarTablero(listJugadores,reglas)     
             listJugadores = reglas.casillaPenalizacion(i,listJugadores)
@@ -81,6 +81,7 @@ while not reglas.juegoFinalizado:
                     print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
                     reglas.juegoFinalizado = True
                     tabla.mostrarTablero(listJugadores,reglas)     
+                    input('Saliendo del juego...')     
 
                     break
         listJugadores[i].penalizacion = False
@@ -91,5 +92,6 @@ while not reglas.juegoFinalizado:
             clear_console()
             print(f"Gana la partida el jugador {listJugadores[i].id}!!!!!")
             reglas.juegoFinalizado = True
-            tabla.mostrarTablero(listJugadores,reglas)     
+            tabla.mostrarTablero(listJugadores,reglas)
+            input('Saliendo del juego...')     
             break
