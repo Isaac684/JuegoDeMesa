@@ -43,7 +43,7 @@ Tambien existe un tunel seguro, el cual son las ultimas 5 casillas antes de la m
 NADIE podra ser comido (Aparecen en el tablero con color {Fore.CYAN}CYAN{Fore.RESET}).
 
 Las casillas de tiro doble (Aparecen en el tablero con color {Fore.GREEN}VERDE{Fore.RESET}) te permiten volver a realizar 
-otra vez, si en dado caso habías sacado par antes de caer en esta casilla, y sacas pares al realizar 
+una tirada otra vez, si en dado caso habías sacado par antes de caer en esta casilla, y sacas pares al realizar 
 el tiro, este no se sumará a los tiros dobles que se llevaba, ya que es una bonificación del juego, 
 pero, si sacas par en tu secundo tiro de casilla doble, este si se contabilizara.
 
